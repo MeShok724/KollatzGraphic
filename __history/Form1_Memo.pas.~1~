@@ -1,0 +1,121 @@
+unit Form1_Memo;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls;
+
+Const N=100;
+
+Type
+  TArray = array[1..N] of byte;
+
+Var
+  A,B:TArray;
+  S,I:integer;
+  Str:String;
+
+type
+  TForm1 = class(TForm)
+    Edit1: TEdit;
+    Button1: TButton;
+    Memo1: TMemo;
+    procedure Button1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+
+
+implementation
+
+{$R *.dfm}
+
+Function FThreeXplusOne(Const Chislo: TArray;
+                            Var Size:integer): TArray;
+var
+  Num1 : TArray;
+  i: LongInt;
+  DigigtsProd: Word;
+  CarryProd: Byte;
+  Carry:byte;
+  Sum:Byte;
+  //Num1 - intermediate calculations
+  //i - cycle counter
+  //DigigtsProd - product of the digits of the first and second number
+  //CarryProd - ñarry the digit (if there is) to the next element (for DigigtsProd)
+begin
+
+  //Reset carry
+  CarryProd:= 0;
+
+  //Multiply the digits of the first number by the second number
+
+    for i := 1 to Size do
+    begin
+
+      //Starting to multiply the last digits of the numbers (in the mirrored view it is first)
+      //and add the carry (if there is).
+      DigigtsProd:= Chislo[i] * 3 + CarryProd;
+
+      //The integer part of dividing by NS is the carry that will go to the next element
+      CarryProd:= DigigtsProd div 10;
+
+      //DigigtsSum mod NS is the digit in the ProductResult
+      Num1[i] := DigigtsProd mod 10;
+
+      if (I=Size) and (CarryProd<>0) then
+      begin
+        Inc(Size);
+        Num1[i+1]:=CarryProd;
+      end;
+    end;
+
+
+    Carry:=0;
+    for i := 1 to Size do
+    begin
+
+      if I=1 then
+       Sum:= Carry + Num1[i] + 1
+      else
+        Sum:=Carry+Num1[i];
+
+
+      Num1[i]:= Sum mod 10;
+
+
+      Carry:= Sum div 10;
+
+
+      if (i = Size) and (Carry = 1) then
+      begin
+        Size:= Size + 1;
+        Num1[i+1]:= Carry;
+      end;
+    end;
+    Result:=Num1;
+
+end;
+
+procedure TForm1.Button1Click(Sender: TObject);
+begin
+  Str:=Edit1.Text;
+  S:=Length(Str);
+  for i := S downto 1 do
+  A[S-i+1]:=StrToInt(Str[i]);
+  B:=FThreeXplusOne(A,S);
+  Memo1.Lines.Clear;
+  Str:='';
+  for i := S downto 1 do
+    Str:=Str+(IntToStr(B[i]));
+  Memo1.Lines.Add(Str);
+end;
+
+end.

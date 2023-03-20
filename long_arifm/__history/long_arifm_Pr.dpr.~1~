@@ -1,0 +1,14 @@
+program long_arifm_Pr;
+
+uses
+  Vcl.Forms,
+  View_Kolatz_Memo in '..\View_Kolatz_Memo.pas' {Form1};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TForm1, Form1);
+  Application.Run;
+end.

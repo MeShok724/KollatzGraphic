@@ -1,0 +1,97 @@
+unit grafik;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls;
+
+type
+  TForm1 = class(TForm)
+    Edit1: TEdit;
+    Button1: TButton;
+    procedure Button1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+Const
+N=20;
+Accur=300;
+
+var
+  Form1: TForm1;
+  Number,MaxNumb:longint;
+  XCord:integer;
+  KoefDiv:integer;
+  KoefMult:integer;
+  ArNumb:array[1..N] of LongInt;
+  i:integer;
+
+
+
+implementation
+
+{$R *.dfm}
+
+
+Procedure NextCh(Var Ch:longint);
+begin
+  if Odd(Ch) then
+  Ch:=3*Ch+1
+  else
+  Ch:=Ch div 2;
+end;
+
+procedure TForm1.Button1Click(Sender: TObject);
+begin
+  Form1.Canvas.MoveTo(200,300);
+  Form1.Canvas.LineTo(600,300);
+  Form1.Canvas.MoveTo(200,300);
+  Form1.Canvas.LineTo(200,50);
+  Number:=StrToInt(Edit1.Text);
+  MaxNumb:=Number;
+  ArNumb[i]:=Number;
+  XCord:=200;
+  Form1.canvas.Pen.color := clRed;
+  i:=2;
+
+  while (Number<>1) or (i<=N) do
+  begin
+    NextCh(Number);
+    ArNumb[i]:=Number;
+    Inc(i);
+    if MaxNumb<Number then MaxNumb:=Number;
+  end;
+  koefDiv:=1;
+  if MaxNumb>Accur then
+  begin
+    i:=1;
+    while (MaxNumb div i)>Accur do
+      Inc(i);
+    koefDiv:=i;
+  end;
+
+  KoefMult:=1;
+  if MaxNumb<(Accur div 2) then
+  begin
+    i:=1;
+    while (MaxNumb * i)<Accur do
+      Inc(i);
+    Dec(I);
+    koefMult:=i;
+  end;
+
+  Form1.Canvas.MoveTo(XCord+1,300-((ArNumb[1]*KoefMult) div koefDiv));
+  for i := 2 to length(ArNumb)-1 do
+  begin
+    Inc(XCord,20);
+    ArNumb[i]:=(ArNumb[i]*koefMult) div koefDiv;
+    Form1.Canvas.LineTo(XCord,300-ArNumb[i]);
+  end;
+
+end;
+
+end.

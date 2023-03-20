@@ -1,0 +1,72 @@
+unit grafik;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls;
+
+type
+  TForm1 = class(TForm)
+    Edit1: TEdit;
+    Button1: TButton;
+    procedure Button1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+Const
+N=20;
+
+var
+  Form1: TForm1;
+  Number,MaxNumb:longint;
+  XCord:integer;
+  Koef:integer;
+  ArNumb:array[1..N] of LongInt;
+  i:integer;
+
+
+
+implementation
+
+{$R *.dfm}
+
+
+Procedure NextCh(Var Ch:longint);
+begin
+  if Odd(Ch) then
+  Ch:=3*Ch+1
+  else
+  Ch:=Ch div 2;
+end;
+
+procedure TForm1.Button1Click(Sender: TObject);
+begin
+  Form1.Canvas.MoveTo(200,300);
+  Form1.Canvas.LineTo(600,300);
+  Form1.Canvas.MoveTo(200,300);
+  Form1.Canvas.LineTo(200,50);
+  Number:=StrToInt(Edit1.Text);
+  ArNumb[1]:=Number;
+  MaxNumb:=Number;
+  XCord:=200;
+  Form1.canvas.Pen.color := clRed;
+  i:=2;
+
+  while (Number<>1) or (i<=20) do
+  begin
+    Inc(XCord,10);
+    NextCh(Number);
+    ArNumb[i]:=Number;
+    Inc(i);
+    if MaxNumb<Number then MaxNumb:=Number
+  end;
+  Koef:=180
+
+  Form1.Canvas.MoveTo(XCord+1,300-Number*5);
+end;
+
+end.
