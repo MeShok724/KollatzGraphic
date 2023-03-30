@@ -1,0 +1,186 @@
+unit Deshifr_bezDl_F;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls,Math;
+
+
+Const N=100;
+
+Type
+  TArray = array[1..N] of byte;
+
+Var
+  A,B:TArray;
+  S,I,K:integer;
+  Str, ShifrStr,ShifrOutputStr:String;
+  Step:LongInt;
+  IsNotCorrect:boolean;
+
+
+
+type
+  TForm1 = class(TForm)
+    Memo1: TMemo;
+    Button1: TButton;
+    Label1: TLabel;
+    Label2: TLabel;
+    Memo2: TMemo;
+    procedure Button1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+{$R *.dfm}
+
+Procedure MultToTwo(Var Num: TArray; Size:integer);
+var
+  i: LongInt;
+  DigigtsProd: Word;
+  CarryProd: Byte;
+  Carry:byte;
+  Sum:Byte;
+  //Num - intermediate calculations
+  //i - cycle counter
+  //DigigtsProd - product of the digits of the first and second number
+  //CarryProd - сarry the digit (if there is) to the next element (for DigigtsProd)
+begin
+
+  //Reset carry
+  CarryProd:= 0;
+
+  //Multiply the digits of the first number by the second number
+
+    i:=1;
+    while i<= Size do
+    begin
+
+      //Starting to multiply the last digits of the numbers (in the mirrored view it is first)
+      //and add the carry (if there is).
+      DigigtsProd:= Num[i] * 2 + CarryProd;
+
+      //The integer part of dividing by NS is the carry that will go to the next element
+      CarryProd:= DigigtsProd div 10;
+
+      //DigigtsSum mod NS is the digit in the ProductResult
+      Num[i] := DigigtsProd mod 10;
+
+
+
+      Inc(I);
+    end;
+
+      if (CarryProd<>0) then
+      begin
+        Inc(Size);
+        Num[i+1]:=CarryProd;
+      end;
+
+
+
+end;
+
+Procedure Division(Var Num: TArray; Size:integer);
+var
+  Devide:integer;
+  Curr:integer;
+  i: Integer;
+
+  //i - cycle counter
+begin
+
+
+  //Dec Num
+  Devide:=1;
+  i:=1;
+  while (Devide <> 0) and (i<=Size) do
+  begin
+    Num[i]:=Num[i]-Devide;
+    if Num[i]>=0 then
+    begin
+      Devide:=0;
+    end
+    else
+    begin
+      Num[i]:=9;
+    end;
+
+    Inc(I);
+  end;
+
+  I:=Size;
+  while (I=Size) and (Num[i]=0) do
+  begin
+    Dec(Size);
+    Dec(I);
+  end;
+
+  //Result check: numerator remainder must be < denominator
+  Devide:=0;
+  Curr:=0;
+  for i := Size downto 1 do
+
+  begin
+    Devide:=Num[i]+Curr;
+    Num[i]:=Devide div 3;
+    Curr:=(Devide mod 3)*10;
+  end;
+
+  I:=Size;
+  while (I=Size) and (Num[i]=0) do
+  begin
+    Dec(Size);
+    Dec(I);
+  end;
+end;
+
+
+procedure TForm1.Button1Click(Sender: TObject);
+
+begin
+  ShifrStr:=Memo1.Text;
+  Memo2.Lines.Clear;
+  {try
+
+  except
+    Memo2.Lines.Add('Ошибка обработки ввода');
+    IsNotCorrect:=true;
+  end;
+
+  for K := 1 to length(ShifrStr) do
+    if (ShifrStr[i]<>'0') and (ShifrStr[i]<>'1') then
+    begin
+      Memo2.Lines.Add('Ошибка обработки ввода');
+      IsNotCorrect:=true;
+    end;}
+
+
+  //if not isnotcorrect then
+  S:=1;
+  for k := 1 to length(ShifrStr) do
+
+  begin
+    if ShifrStr[k]='1' then
+      S:=(S-1) div 3
+    else
+      S:=S*2;
+
+
+    Memo2.Lines.Add(IntToStr(S));
+  end;
+
+
+
+
+end;
+
+end.

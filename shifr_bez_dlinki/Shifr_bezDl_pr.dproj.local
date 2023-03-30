@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>1899.12.30 00:00:00.000.489,C:\Users\Hp\Documents\Embarcadero\Studio\Projects\Unit1.dfm=C:\misha\научка\View_Kolatz_Memo.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.576,C:\misha\научка\View_Kolatz_Memo.dfm=C:\misha\научка\long_arifm\long_arifm_F.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.278,C:\misha\научка\shifr\Shifr_F.pas=C:\misha\научка\long_arifm\long_arifm_F.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.278,C:\misha\научка\shifr\Shifr_F.dfm=C:\misha\научка\long_arifm\long_arifm_F.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.049,C:\Users\Hp\Documents\Embarcadero\Studio\Projects\Project1.dproj=C:\misha\научка\Project_Viez_Kolatz_Memo_Pr.dproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.489,C:\Users\Hp\Documents\Embarcadero\Studio\Projects\Unit1.pas=C:\misha\научка\View_Kolatz_Memo.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.639,C:\misha\научка\Project_Viez_Kolatz_Memo_Pr.dproj=C:\misha\научка\long_arifm\long_arifm_Pr.dproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.089,C:\misha\научка\shifr\Shifr_pr.dproj=C:\misha\научка\long_arifm\long_arifm_Pr.dproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.582,C:\misha\научка\shifr\Shifr_pr.dproj=C:\misha\научка\shifr_bez_dlinki\Shifr_bezDl_pr.dproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.576,C:\misha\научка\View_Kolatz_Memo.pas=C:\misha\научка\long_arifm\long_arifm_F.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.557,=C:\Users\Hp\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+  </Transactions>
+</BorlandProject>
