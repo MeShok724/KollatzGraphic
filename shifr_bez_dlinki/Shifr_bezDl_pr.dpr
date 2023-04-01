@@ -2,7 +2,7 @@ program Shifr_bezDl_pr;
 
 uses
   Vcl.Forms,
-  Shifr_F in '..\shifr\Shifr_F.pas' {Form1};
+  Shifr_bezDl_F in 'Shifr_bezDl_F.pas' {Form1};
 
 {$R *.res}
 

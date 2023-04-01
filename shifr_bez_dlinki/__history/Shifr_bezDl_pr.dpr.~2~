@@ -1,0 +1,14 @@
+program Shifr_bezDl_pr;
+
+uses
+  Vcl.Forms,
+  Shifr_bezDl_F in '..\deshifr_bez_dlinki\Shifr_bezDl_F.pas' {Form1};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TForm1, Form1);
+  Application.Run;
+end.

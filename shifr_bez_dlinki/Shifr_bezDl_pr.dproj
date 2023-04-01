@@ -98,7 +98,7 @@
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
-        <DCCReference Include="..\shifr\Shifr_F.pas">
+        <DCCReference Include="Shifr_bezDl_F.pas">
             <Form>Form1</Form>
             <FormType>dfm</FormType>
         </DCCReference>
